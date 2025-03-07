@@ -120,7 +120,7 @@
 										</div>
 									<? endif ?>
 
-									<? if ($sort != 'myself'): ?>
+									<? if ($sort != 'myself' && $sort != 'myself_yes' && $sort != 'none'): ?>
 										<div class="uc_uil2_raz">
 											<div class="uc_uil2_mi">
 												<div class="uc_uil2_mi1">Курьер:</div>
@@ -141,7 +141,6 @@
 											</div>
 										</div>
 									<? endif ?>
-
 
 								</div>
 							</div>
