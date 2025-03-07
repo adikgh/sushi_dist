@@ -63,7 +63,7 @@
 
    // setting
    $site = mysqli_fetch_array(db::query("select * from `site` where id = 1"));
-   $ver = 1.057;
+   $ver = 1.058;
 
    // 
    $site_set = [
@@ -103,7 +103,7 @@
    // }
 
    // lang
-   $super = $user_right['positions_id'];
+   $super = @$user_right['positions_id'];
    // if (isset($_SESSION['super'])) $super = $_SESSION['super'];
 
 

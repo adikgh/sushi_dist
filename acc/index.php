@@ -36,33 +36,25 @@
 						<div class="menu_cin"><i class="fal fa-user-circle"></i></div>
 						<div class="menu_cih">Жеке деректер</div>
 					</div>
-
-					<? if ($super == 3 || $user_right['positions_id'] == 2 || $user_right['positions_id'] == 1): ?>
-						<a class="up_li" href="/users/">
-							<div class="menu_cin"><i class="fal fa-users"></i></div>
-							<div class="menu_cih">Курьерлер</div>
-						</a>
-					<? else: ?>
-						<!-- <a class="up_li" href="/users/">
-							<div class="menu_cin"><i class="fal fa-history"></i></div>
-							<div class="menu_cih">Тарих</div>
-						</a> -->
-					<? endif ?>
-					<? if ($user_right['super_v'] == 1): ?>
-						<? if ($super == 6): ?>
-							<div class="up_li on_superv6" data-id="<?=$user_right['id']?>" href="/users/">
-								<div class="menu_cin"><i class="fal fa-plus"></i></div>
-								<div class="menu_cih">Админ болу</div>
-							</div>
-						<? else: ?>
-							<div class="up_li on_superv3" data-id="<?=$user_right['id']?>" href="/users/">
-								<div class="menu_cin"><i class="fal fa-plus"></i></div>
-								<div class="menu_cih">Курьер болу</div>
-							</div>
-						<? endif ?>
-					<? endif ?>
-
+					<a class="up_li" href="/users/">
+						<div class="menu_cin"><i class="fal fa-users"></i></div>
+						<div class="menu_cih">Курьерлер</div>
+					</a>
+					<!-- <a class="up_li" href="/users/">
+						<div class="menu_cin"><i class="fal fa-history"></i></div>
+						<div class="menu_cih">Тарих</div>
+					</a> -->
 				</div>
+				<!-- <div class="up_lt">
+					<a class="up_li" href="/orders/?sort=myself_yes">
+						<div class="menu_cin"><i class="fal fa-users"></i></div>
+						<div class="menu_cih">Собой - дайын</div>
+					</a>
+					<a class="up_li" href="/orders/?sort=none">
+						<div class="menu_cin"><i class="fal fa-users"></i></div>
+						<div class="menu_cih">Отказадар</div>
+					</a>
+				</div> -->
 
 				<!-- <div class="up_lt">
 					<a class="up_li" href="#">
