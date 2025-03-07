@@ -114,8 +114,24 @@
 												<div class="uc_uil2_mi1">Адрес:</div>
 												<div class="uc_uil2_mi2"><?=$buy_d['address']?></div>
 											</div>
-											<div class="uc_uil2_mib uc_uil2_mib1">
-												<a class="btn btn_cl" href="https://2gis.ru/shymkent/search/<?=$buy_d['address']?>" target="_blank">Картадан ашу</a>
+											<? if ($sort != 'myself' && $sort != 'myself_yes' && $sort != 'none'): ?>
+												<div class="uc_uil2_mib uc_uil2_mib1">
+													<a class="btn btn_cl" href="https://2gis.ru/shymkent/search/<?=$buy_d['address']?>" target="_blank">Картадан ашу</a>
+												</div>
+											<? endif ?>
+
+										</div>
+									<? endif ?>
+
+									<? if ($buy_d['phone']): ?>
+										<div class="uc_uil2_raz">
+											<div class="uc_uil2_mi">
+												<div class="uc_uil2_mi1">Номер:</div>
+												<div class="uc_uil2_mi2 fr_phone"><?=$buy_d['phone']?></div>
+											</div>
+											<div class="uc_uil2_mib">
+												<a class="btn btn_phone" href="tel:8<?=$buy_d['phone']?>">Званок</a>
+												<a class="btn btn_whatsapp" href="https://wa.me/<?=$buy_d['phone']?>" target="_blank">Whatsapp</a>
 											</div>
 										</div>
 									<? endif ?>
