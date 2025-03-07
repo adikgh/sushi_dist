@@ -131,7 +131,7 @@
 											</div>
 											<div class="uc_uil2_mib">
 												<a class="btn btn_phone" href="tel:8<?=$buy_d['phone']?>">Званок</a>
-												<a class="btn btn_whatsapp" href="https://wa.me/<?=$buy_d['phone']?>" target="_blank">Whatsapp</a>
+												<a class="btn btn_whatsapp" href="https://wa.me/7<?=$buy_d['phone']?>" target="_blank">Whatsapp</a>
 											</div>
 										</div>
 									<? endif ?>
