@@ -16,20 +16,20 @@
 	if ($sort == 'new') {
 		$menu_name = 'car';
 		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `сourier_id` is null and `order_status` in(1, 2) order by number asc");
-	} elseif ($sort == 'road') {
-		$menu_name = 'car';
-		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `сourier_id` is not null and `order_status` = 3 order by number desc");
 	} elseif ($sort == 'road' && @$_GET['staff']) {
 		$menu_name = 'car';
 		$staff = $_GET['staff'];
-		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `сourier_id` = '$staff' and `order_status` = 3 order by number desc");
-	} elseif ($sort == 'history') {
+		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `order_status` = 3 and `сourier_id` = '$staff' order by number desc");
+	} elseif ($sort == 'road') {
 		$menu_name = 'car';
-		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `сourier_id` is not null and `order_status` = 4 order by number desc");
+		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `order_status` = 3 and `сourier_id` is not null order by number desc");
 	} elseif ($sort == 'history' && @$_GET['staff']) {
 		$menu_name = 'car';
 		$staff = $_GET['staff'];
-		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `сourier_id` = '$staff' and `order_status` = 4 order by number desc");
+		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `order_status` = 4 and  `сourier_id` = '$staff' order by number desc");
+	} elseif ($sort == 'history') {
+		$menu_name = 'car';
+		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `order_status` = 4 and `сourier_id` is not null order by number desc");
 	} elseif ($sort == 'myself') {
 		$menu_name = 'user';
 		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 2 and `order_status` in(1, 2) order by number desc");
