@@ -48,7 +48,41 @@
 ?>
 <? include "../block/header.php"; ?>
 
-	<div class="flex_clm_rev">
+	<div class="">
+
+		<div class="hil_head">
+			<div class="bl_c">
+
+				<div class="hil_headc">
+
+					<? if ($menu_name == 'car'): ?> <h4 class="hil_headc1 txt_c">Доставка</h4>
+					<? elseif ($menu_name == 'user'): ?> <h4 class="hil_headc1 txt_c">Собой</h4>
+					<? elseif ($menu_name == 'none'): ?> <h4 class="hil_headc1 txt_c">Отказ</h4> <? endif ?>
+
+					<? if ($sort == 'new' || $sort == 'road' || $sort == 'history'): ?>
+						<div class="hil_fr1">
+							<a class="hil_fr1c <?=($sort == 'new'?'hil_fr1c_act':'')?>" href="/orders/?sort=new">Жаңа</a>
+							<a class="hil_fr1c <?=($sort == 'road'?'hil_fr1c_act':'')?>" href="/orders/?sort=road">Жолда</a>
+							<a class="hil_fr1c <?=($sort == 'history'?'hil_fr1c_act':'')?>" href="/orders/?sort=history">Аяқталған</a>
+						</div>
+					<? elseif ($sort == 'myself' || $sort == 'myself_yes'): ?>
+						<div class="hil_fr1 hil_fr2">
+							<a class="hil_fr1c <?=($sort == 'myself'?'hil_fr1c_act':'')?>" href="/orders/?sort=myself">Жаңа</a>
+							<a class="hil_fr1c <?=($sort == 'myself_yes'?'hil_fr1c_act':'')?>" href="/orders/?sort=myself_yes">Аяқталған</a>
+						</div>
+					<? endif ?>
+
+					<div class="hil_headc2">
+						<div class="hil_headc2s">
+							<span>Заказ саны:</span>
+							<p class="pp_number"></p>
+						</div>
+					</div>
+					
+				</div>
+
+			</div>
+		</div>
 
 		<div class="bl_c">
 
@@ -183,43 +217,13 @@
 
 		</div>
 
-		<div class="hil_head">
-			<div class="bl_c">
-
-				<div class="hil_headc">
-
-					<? if ($menu_name == 'car'): ?> <h4 class="hil_headc1 txt_c">Доставка</h4>
-					<? elseif ($menu_name == 'user'): ?> <h4 class="hil_headc1 txt_c">Собой</h4>
-					<? elseif ($menu_name == 'none'): ?> <h4 class="hil_headc1 txt_c">Отказ</h4> <? endif ?>
-
-					<? if ($sort == 'new' || $sort == 'road' || $sort == 'history'): ?>
-						<div class="hil_fr1">
-							<a class="hil_fr1c <?=($sort == 'new'?'hil_fr1c_act':'')?>" href="/orders/?sort=new">Жаңа</a>
-							<a class="hil_fr1c <?=($sort == 'road'?'hil_fr1c_act':'')?>" href="/orders/?sort=road">Жолда</a>
-							<a class="hil_fr1c <?=($sort == 'history'?'hil_fr1c_act':'')?>" href="/orders/?sort=history">Аяқталған</a>
-						</div>
-					<? elseif ($sort == 'myself' || $sort == 'myself_yes'): ?>
-						<div class="hil_fr1 hil_fr2">
-							<a class="hil_fr1c <?=($sort == 'myself'?'hil_fr1c_act':'')?>" href="/orders/?sort=myself">Жаңа</a>
-							<a class="hil_fr1c <?=($sort == 'myself_yes'?'hil_fr1c_act':'')?>" href="/orders/?sort=myself_yes">Аяқталған</a>
-						</div>
-					<? endif ?>
-
-					<div class="hil_headc2">
-						<div class="hil_headc2s">
-							<span>Заказ саны:</span>
-							<p><?=$allorder['number']?> шт</p>
-						</div>
-						<!-- <div class="hil_headc2s">
-							<span>Ақшасы:</span>
-							<p class="fr_price"><?=$allorder['pay_delivery']?></p>
-						</div> -->
-					</div>
-				</div>
-
-			</div>
-		</div>
-
 	</div>
+
+
+	<script>
+		$(document).ready(function() {
+			$('.pp_number').html('<?=$allorder['number']?> шт');
+		})
+	</script>
 
 <? include "../block/footer.php"; ?>
