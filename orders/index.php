@@ -18,15 +18,15 @@
 		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `сourier_id` is null and `order_status` in(1, 2) order by number asc");
 	} elseif ($sort == 'road' && @$_GET['staff']) {
 		$menu_name = 'car';
-		$staff = $_GET['staff'];
-		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `order_status` = 3 and `сourier_id` = '$staff' order by number desc");
+		$сourier_id = $_GET['staff'];
+		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `order_status` = 3 and `сourier_id` = '$сourier_id' order by number desc");
 	} elseif ($sort == 'road') {
 		$menu_name = 'car';
 		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `order_status` = 3 and `сourier_id` is not null order by number desc");
 	} elseif ($sort == 'history' && @$_GET['staff']) {
 		$menu_name = 'car';
-		$staff = $_GET['staff'];
-		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `order_status` = 4 and  `сourier_id` = '$staff' order by number desc");
+		$сourier_id = $_GET['staff'];
+		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `order_status` = 4 and  `сourier_id` = '$сourier_id' order by number desc");
 	} elseif ($sort == 'history') {
 		$menu_name = 'car';
 		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `order_status` = 4 and `сourier_id` is not null order by number desc");
@@ -83,11 +83,11 @@
 					<? if ($sort == 'road' || $sort == 'history'): ?>
 						<div class="uc_uil2_sel">
 							<select name="" id="" class="on_sort_staff" >
-								<option value="" data-id="off">Іздеу: курьер таңдау</option>
+								<option data-id="" <?=($сourier_id==''?'selected':'')?> value="" >Іздеу: курьер таңдау</option>
 								<? $staff = db::query("select * from user_staff where positions_id = 6 and company_id = '$company'"); ?>
 								<? while ($staff_d = mysqli_fetch_assoc($staff)): ?>
 									<? $staff_user_d = fun::user($staff_d['user_id']); ?>
-									<option data-id="<?=$staff_d['user_id']?>" <?=($staff==$staff_d['user_id']?'selected':'')?> value="" ><?=$staff_user_d['name']?></option>
+									<option data-id="<?=$staff_d['user_id']?>" <?=($сourier_id==$staff_d['user_id']?'selected':'')?> value="" ><?=$staff_user_d['name']?></option>
 								<? endwhile ?>
 							</select>
 						</div>
