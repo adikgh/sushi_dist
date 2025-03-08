@@ -181,7 +181,7 @@
 												<div class="uc_uil2_mi1">Адрес:</div>
 												<div class="uc_uil2_mi2"><?=$buy_d['address']?></div>
 											</div>
-											<? if ($menu_name == 'car'): ?>
+											<? if ($menu_name == 'car' && $sort != 'history'): ?>
 												<div class="uc_uil2_mib uc_uil2_mib1">
 													<a class="btn btn_cl" href="https://2gis.kz/shymkent/search/<?=$buy_d['address']?>" target="_blank">Картадан ашу</a>
 												</div>
