@@ -45,11 +45,13 @@
 }
 .hil_headc2s span{
    font-size: 16px;
+   display: inline;
 }
 .hil_headc2s p{
    font-size: 18px;
    font-weight: 700;
    color: var(--cl);
+   display: inline;
 }
 
 
@@ -82,7 +84,9 @@
 
 
 
-
+.hil_fr2 .hil_fr1c{
+   width: calc(100% / 2);
+}
 
 
 

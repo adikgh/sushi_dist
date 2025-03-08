@@ -14,14 +14,22 @@
 
 	// 
 	if ($sort == 'new') {
-		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `order_status` in(1, 2, 3) and `сourier_id` is null order by number asc");
+		$menu_name = 'car';
+		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `сourier_id` is null and `order_status` in(1, 2) order by number asc");
+	} elseif ($sort == 'road') {
+		$menu_name = 'car';
+		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `сourier_id` is not null and `order_status` = 3 order by number desc");
 	} elseif ($sort == 'history') {
-		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `order_status` in(1, 2, 3) and `сourier_id` is not null order by number desc");
+		$menu_name = 'car';
+		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `сourier_id` is not null and `order_status` = 4 order by number desc");
 	} elseif ($sort == 'myself') {
-		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 2 order by number desc");
+		$menu_name = 'user';
+		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 2 and `order_status` in(1, 2) order by number desc");
 	} elseif ($sort == 'myself_yes') {
-		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 2 order by number desc");
+		$menu_name = 'user';
+		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 2 and `order_status` = 4 order by number desc");
 	} else {
+		$menu_name = 'none';
 		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1  and company_id = '$company' and `order_status` in(5, 6) order by number desc");
 	}
 
@@ -34,8 +42,7 @@
 
 
 	// site setting
-	$menu_name = $sort;
-	$pod_menu_name = 'main';
+	$pod_menu_name = $sort;
 	$css = ['orders'];
 	$js = ['orders'];
 ?>
@@ -180,20 +187,24 @@
 			<div class="bl_c">
 
 				<div class="hil_headc">
-					<? if ($sort == 'history'): ?>
-						<h4 class="hil_headc1 txt_c">Белгіленген заказдар</h4>
-					<? elseif ($sort == 'myself'): ?>
-						<h4 class="hil_headc1 txt_c">Собой</h4>
-					<? else: ?>
-						<h4 class="hil_headc1 txt_c">Жаңа заказдар</h4>
+
+					<? if ($menu_name == 'car'): ?> <h4 class="hil_headc1 txt_c">Доставка</h4>
+					<? elseif ($menu_name == 'user'): ?> <h4 class="hil_headc1 txt_c">Собой</h4>
+					<? elseif ($menu_name == 'none'): ?> <h4 class="hil_headc1 txt_c">Отказ</h4> <? endif ?>
+
+					<? if ($sort == 'new' || $sort == 'road' || $sort == 'history'): ?>
+						<div class="hil_fr1">
+							<a class="hil_fr1c <?=($sort == 'new'?'hil_fr1c_act':'')?>" href="/orders/?sort=new">Жаңа</a>
+							<a class="hil_fr1c <?=($sort == 'road'?'hil_fr1c_act':'')?>" href="/orders/?sort=road">Жолда</a>
+							<a class="hil_fr1c <?=($sort == 'history'?'hil_fr1c_act':'')?>" href="/orders/?sort=history">Аяқталған</a>
+						</div>
+					<? elseif ($sort == 'myself' || $sort == 'myself_yes'): ?>
+						<div class="hil_fr1 hil_fr2">
+							<a class="hil_fr1c <?=($sort == 'myself'?'hil_fr1c_act':'')?>" href="/orders/?sort=myself">Жаңа</a>
+							<a class="hil_fr1c <?=($sort == 'myself_yes'?'hil_fr1c_act':'')?>" href="/orders/?sort=myself_yes">Аяқталған</a>
+						</div>
 					<? endif ?>
-					<? if ($sort == 'history'): ?>
-						<!-- <div class="hil_fr1">
-							<div class="hil_fr1c on_sort_branch <?=($branch == 0?'hil_fr1c_act':'')?>" data-id="0">Барлығы</div>
-							<div class="hil_fr1c on_sort_branch <?=($branch == 1?'hil_fr1c_act':'')?>" data-id="1">Банзай</div>
-							<div class="hil_fr1c on_sort_branch <?=($branch == 2?'hil_fr1c_act':'')?>" data-id="2">Мастер</div>
-						</div> -->
-					<? endif ?>
+
 					<div class="hil_headc2">
 						<div class="hil_headc2s">
 							<span>Заказ саны:</span>
