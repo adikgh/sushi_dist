@@ -48,11 +48,8 @@
 		$id = strip_tags($_POST['id']);
 		$order_id = strip_tags($_POST['order_id']);
 
-      if ($id == 'off') {
-         $upd = db::query("UPDATE `retail_orders` SET сourier_id = null WHERE id = '$order_id'");
-      } else {
-         $upd = db::query("UPDATE `retail_orders` SET сourier_id = '$id' WHERE id = '$order_id'");
-      }
+      if ($id == 'off') $upd = db::query("UPDATE `retail_orders` SET сourier_id = null and order_status = 2 WHERE id = '$order_id'");
+      else $upd = db::query("UPDATE `retail_orders` SET сourier_id = '$id' and order_status = 3 WHERE id = '$order_id'");
 
       echo 'yes';
 
