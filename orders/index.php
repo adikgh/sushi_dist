@@ -68,7 +68,7 @@
 					<? elseif ($sort == 'myself' || $sort == 'myself_yes'): ?>
 						<div class="hil_fr1 hil_fr2">
 							<a class="hil_fr1c <?=($sort == 'myself'?'hil_fr1c_act':'')?>" href="/orders/?sort=myself">Жаңа</a>
-							<a class="hil_fr1c <?=($sort == 'myself_yes'?'hil_fr1c_act':'')?>" href="/orders/?sort=myself_yes">Аяқталған</a>
+							<a class="hil_fr1c <?=($sort == 'myself_yes'?'hil_fr1c_act':'')?>" href="/orders/?sort=myself_yes">Тапсырылған</a>
 						</div>
 					<? endif ?>
 
@@ -189,7 +189,7 @@
 													<? if ($buy_d['сourier_id']): ?>
 														<option value="" data-id="off">Тазалау</option>
 													<? endif ?>
-													<? $staff = db::query("select * from user_staff where positions_id = 6"); ?>
+													<? $staff = db::query("select * from user_staff where positions_id = 6 and company_id = '$company'"); ?>
 													<? while ($staff_d = mysqli_fetch_assoc($staff)): ?>
 														<? $staff_user_d = fun::user($staff_d['user_id']); ?>
 														<option value="" data-id="<?=$staff_d['user_id']?>" ><?=$staff_user_d['name']?></option>

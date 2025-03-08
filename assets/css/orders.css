@@ -34,12 +34,12 @@
    display: grid;
    grid-template-columns: repeat(1, 1fr);
    gap: 10px;
-   margin-top: 20px;
+   margin-top: 10px;
 }
 .hil_headc2s{
    position: relative;
    width: 100%;
-   padding: 20px;
+   padding: 14px 18px;
    border-radius: 8px;
    border: 1px solid var(--gr5);
 }
@@ -75,7 +75,8 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   border-radius: 7px;  
+   border-radius: 7px; 
+   font-weight: 600;
 }
 
 .hil_fr1c_act{
