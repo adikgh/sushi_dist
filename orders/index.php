@@ -123,7 +123,7 @@
 											<div class="uc_uil2_date1"><?=@$branch_d['name']?></div>
 											<div class=""><?=date("d-m-Y", strtotime($buy_d['ins_dt']))?> ⌛ <?=date("H:i", strtotime($buy_d['ins_dt']))?> <?=($buy_d['preorder_dt']?'| 🔴':'')?>  <?=($buy_d['preorder_dt']?$buy_d['preorder_dt']:'')?></div>
 										</div>
-										<? if ($buy_d['order_status'] != 4): ?>
+										<? if ($buy_d['order_status'] == 1): ?>
 											<div class="uc_uil2_chek">
 												<div class="btn btn_cl btn_44 on_check" data-id="<?=$buy_d['id']?>"><i class="far fa-check"></i></div>
 											</div>
