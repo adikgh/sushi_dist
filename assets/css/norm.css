@@ -836,10 +836,10 @@ input, textarea, select{
 	-webkit-appearance: none;
 	outline: none;
 	border: 1px solid var(--tr);
-	padding: 0 24px;
-	min-height: 56px;
-	max-height: 56px;
-	border-radius: 5px;
+	padding: 0 18px;
+	min-height: 54px;
+	max-height: 54px;
+	border-radius: 10px;
 	font-family: 'Nunito', sans-serif;
 	font-size: 16px;
 	line-height: 22px;

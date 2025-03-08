@@ -19,9 +19,17 @@
 	} elseif ($sort == 'road') {
 		$menu_name = 'car';
 		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `сourier_id` is not null and `order_status` = 3 order by number desc");
+	} elseif ($sort == 'road' && @$_GET['staff']) {
+		$menu_name = 'car';
+		$staff = $_GET['staff'];
+		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `сourier_id` = '$staff' and `order_status` = 3 order by number desc");
 	} elseif ($sort == 'history') {
 		$menu_name = 'car';
 		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `сourier_id` is not null and `order_status` = 4 order by number desc");
+	} elseif ($sort == 'history' && @$_GET['staff']) {
+		$menu_name = 'car';
+		$staff = $_GET['staff'];
+		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 1 and `сourier_id` = '$staff' and `order_status` = 4 order by number desc");
 	} elseif ($sort == 'myself') {
 		$menu_name = 'user';
 		$orders = db::query("select * from retail_orders where ins_dt BETWEEN '$start_cdate' and '$end_cdate' and `paid` = 1 and company_id = '$company' and `order_type` = 2 and `order_status` in(1, 2) order by number desc");
@@ -69,6 +77,19 @@
 						<div class="hil_fr1 hil_fr2">
 							<a class="hil_fr1c <?=($sort == 'myself'?'hil_fr1c_act':'')?>" href="/orders/?sort=myself">Жаңа</a>
 							<a class="hil_fr1c <?=($sort == 'myself_yes'?'hil_fr1c_act':'')?>" href="/orders/?sort=myself_yes">Тапсырылған</a>
+						</div>
+					<? endif ?>
+
+					<? if ($sort == 'road' || $sort == 'history'): ?>
+						<div class="uc_uil2_sel">
+							<select name="" id="" class="on_sort_staff" >
+								<option value="" data-id="off">Іздеу: курьер таңдау</option>
+								<? $staff = db::query("select * from user_staff where positions_id = 6 and company_id = '$company'"); ?>
+								<? while ($staff_d = mysqli_fetch_assoc($staff)): ?>
+									<? $staff_user_d = fun::user($staff_d['user_id']); ?>
+									<option data-id="<?=$staff_d['user_id']?>" <?=($staff==$staff_d['user_id']?'selected':'')?> value="" ><?=$staff_user_d['name']?></option>
+								<? endwhile ?>
+							</select>
 						</div>
 					<? endif ?>
 
