@@ -83,11 +83,11 @@
 					<? if ($sort == 'road' || $sort == 'history'): ?>
 						<div class="uc_uil2_sel">
 							<select name="" id="" class="on_sort_staff" >
-								<option data-id="" <?=($сourier_id==''?'selected':'')?> value="" >Іздеу: курьер таңдау</option>
+								<option data-id="" <?=(@$сourier_id==''?'selected':'')?> value="" >Іздеу: курьер таңдау</option>
 								<? $staff = db::query("select * from user_staff where positions_id = 6 and company_id = '$company'"); ?>
 								<? while ($staff_d = mysqli_fetch_assoc($staff)): ?>
 									<? $staff_user_d = fun::user($staff_d['user_id']); ?>
-									<option data-id="<?=$staff_d['user_id']?>" <?=($сourier_id==$staff_d['user_id']?'selected':'')?> value="" ><?=$staff_user_d['name']?></option>
+									<option data-id="<?=$staff_d['user_id']?>" <?=(@$сourier_id==$staff_d['user_id']?'selected':'')?> value="" ><?=$staff_user_d['name']?></option>
 								<? endwhile ?>
 							</select>
 						</div>
@@ -181,12 +181,11 @@
 												<div class="uc_uil2_mi1">Адрес:</div>
 												<div class="uc_uil2_mi2"><?=$buy_d['address']?></div>
 											</div>
-											<? if ($sort != 'myself' && $sort != 'myself_yes' && $sort != 'none'): ?>
+											<? if ($menu_name == 'car'): ?>
 												<div class="uc_uil2_mib uc_uil2_mib1">
-													<a class="btn btn_cl" href="https://2gis.ru/shymkent/search/<?=$buy_d['address']?>" target="_blank">Картадан ашу</a>
+													<a class="btn btn_cl" href="https://2gis.kz/shymkent/search/<?=$buy_d['address']?>" target="_blank">Картадан ашу</a>
 												</div>
 											<? endif ?>
-
 										</div>
 									<? endif ?>
 
@@ -196,14 +195,16 @@
 												<div class="uc_uil2_mi1">Номер:</div>
 												<div class="uc_uil2_mi2 fr_phone"><?=$buy_d['phone']?></div>
 											</div>
-											<div class="uc_uil2_mib">
-												<a class="btn btn_phone" href="tel:8<?=$buy_d['phone']?>">Званок</a>
-												<a class="btn btn_whatsapp" href="https://wa.me/7<?=$buy_d['phone']?>" target="_blank">Whatsapp</a>
-											</div>
+											<? if ($menu_name == 'user'): ?>
+												<div class="uc_uil2_mib">
+													<a class="btn btn_phone" href="tel:8<?=$buy_d['phone']?>">Званок</a>
+													<a class="btn btn_whatsapp" href="https://wa.me/7<?=$buy_d['phone']?>" target="_blank">Whatsapp</a>
+												</div>
+											<? endif ?>
 										</div>
 									<? endif ?>
 
-									<? if ($sort != 'myself' && $sort != 'myself_yes' && $sort != 'none'): ?>
+									<? if ($menu_name == 'car'): ?>
 										<div class="uc_uil2_raz">
 											<div class="uc_uil2_mi">
 												<div class="uc_uil2_mi1">Курьер:</div>
