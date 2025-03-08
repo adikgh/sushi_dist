@@ -186,7 +186,7 @@
 											<div class="uc_uil2_sel">
 												<select name="" id="" class="on_staff" data-order-id="<?=$buy_d['id']?>" >
 													<option value="" ><?=($buy_d['сourier_id']?'Ауыстыру':'Таңдау')?></option>
-													<? if ($buy_d['сourier_id']): ?>
+													<? if ($buy_d['сourier_id'] && $sort != 'history'): ?>
 														<option value="" data-id="off">Тазалау</option>
 													<? endif ?>
 													<? $staff = db::query("select * from user_staff where positions_id = 6 and company_id = '$company'"); ?>
