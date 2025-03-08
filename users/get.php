@@ -12,7 +12,7 @@
 			if ($user_ins) {
 				$user_d = mysqli_fetch_assoc(db::query("SELECT * FROM `user` WHERE phone = '$phone'"));
 				$user_id = $user_d['id'];
-				$buy_ins = db::query("INSERT INTO `user_staff`(`user_id`, `positions_id`) VALUES ('$user_id', 6)");
+				$buy_ins = db::query("INSERT INTO `user_staff`(`user_id`, `positions_id`, `company_id`) VALUES ('$user_id', 6, '$company')");
             	echo 'add';
 			}
 		} else echo 'yes';
