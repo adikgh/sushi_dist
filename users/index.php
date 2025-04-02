@@ -39,7 +39,7 @@
 				</div>
 
 				<div class="uc_uc">
-					<? $staff = db::query("select * from user_staff where positions_id  = 6 order by ins_dt desc"); ?>
+					<? $staff = db::query("select * from user_staff where positions_id = 6 and company_id = '$company' order by ins_dt desc"); ?>
 					<? if (mysqli_num_rows($staff)): ?>
 						<? while ($buy_d = mysqli_fetch_assoc($staff)): ?>
 							<? $user_d = fun::user($buy_d['user_id']); ?>
