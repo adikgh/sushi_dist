@@ -2,6 +2,13 @@
 
 	// 
 	if (!$user_id) header('location: /');
+	if ($user_staff['positions_id'] == 6) {
+		$core->user_unset();
+		header('location: /');
+	}
+
+
+
 
 
 

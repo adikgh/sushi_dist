@@ -25,7 +25,7 @@
 		if (mysqli_num_rows($user)) {
 			$user_d = mysqli_fetch_array($user);
 			$user_staff = fun::user_staffw($user_d['id']);
-			if ($user_staff['positions_id'] == 6 || $user_staff['positions_id'] == 3 || $user_staff['positions_id'] == 2 || $user_staff['positions_id'] == 1) {
+			if ($user_staff['positions_id'] == 3 || $user_staff['positions_id'] == 2 || $user_staff['positions_id'] == 1) {
 				$_SESSION['uph'] = $phone;
 				$_SESSION['ups'] = $password;
 				setcookie('uph', $phone, time() + 3600*24*30*6, '/');
