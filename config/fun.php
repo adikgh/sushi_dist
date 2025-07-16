@@ -4,6 +4,11 @@
 		
 		function __construct() {}
 
+		// retail_order
+		public static function company($id) {
+			$sql = db::query("select * from company where id = '$id'");
+			return mysqli_fetch_array($sql);
+		}
 
 		
 

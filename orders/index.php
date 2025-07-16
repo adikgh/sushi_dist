@@ -2,13 +2,18 @@
 
 	// 
 	if (!$user_id) header('location: /');
-	if ($user_staff['positions_id'] == 6) {
+	if (@$user_staff['positions_id'] == 6) {
 		$core->user_unset();
 		header('location: /');
 	}
 
 
-
+	$cmp = fun::company($company);
+	$open = true; $result = 0;
+	if ($cmp['ins_dt'] != null && $cmp['end_dt'] != null) {
+		$result = intval((strtotime($cmp['end_dt']) - strtotime(date("d.m.Y"))) / (60*60*24));
+		if ($result <= 0) header('location: http://kassa.abdis.kz/pay.php');
+	}
 
 
 
